@@ -1,7 +1,8 @@
 class Api::V1::PostsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  
   def index
     @posts = current_user.posts.all
   end

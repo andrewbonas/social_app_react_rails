@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'pages#home'
+  root 'pages#posts'
   authenticated :user do 
     root "pages#post", as: :authenticated_root
   end
