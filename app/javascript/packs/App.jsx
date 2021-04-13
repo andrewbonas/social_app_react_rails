@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Posts from "./components/Posts";
-import Post from "./components/Post";
 import PostForm from "./components/PostForm";
 
 
@@ -8,9 +7,15 @@ const App = () => {
   const [posts, setPosts] = useState([]);
 
 
-  const addPost = (post) => {
+  const updatePost = (post) => {
+    if(typeof post === 'number' && (post%1)===0){
+      console.log(posts);
+      const allPosts = posts.filter(p => p.id !== post);
+      setPosts(allPosts);
+    } else {
     const allPosts = [post, ...posts];
     setPosts(allPosts);
+  }
   }
   useEffect(() => {
     fetch(`/api/v1/posts`)
@@ -23,11 +28,10 @@ const App = () => {
 
   return (
     <div>
-      <p>App </p>
-      <PostForm addPost={addPost}/>
+      <PostForm updatePost={updatePost}/>
       <div>
         {posts.map((post) => (
-          <Posts key={post.id} post={post} />
+          <Posts key={post.id} post={post} updatePost={updatePost} />
         ))}
       </div>
     </div>
