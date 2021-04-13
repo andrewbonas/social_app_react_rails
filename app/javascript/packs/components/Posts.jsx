@@ -16,7 +16,7 @@ const Posts = (props) => {
   return (
     <div className="post-ctn">
       <div className="post border  p-2 mt-3">
-        <div>{props.post.user_id}</div>
+        <div className="font-weight-bold" >{props.post.user.username}</div>
         <div className="d-flex flex-row justify-content-between">
           <div>{props.post.body}</div>
           <button onClick={deletePost} className="btn btn-sm btn-danger">
