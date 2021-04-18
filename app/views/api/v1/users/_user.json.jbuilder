@@ -1,0 +1,1 @@
+json.extract! user, :id, :email, :username, :following_users, :follow_count, :user_followers, :followers_count, :created_at, :updated_at
