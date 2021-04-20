@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :posts, only: [:index, :show, :create, :update, :destroy]
-      resources :users
+      resources :users do
+      member do
+      get '/follow', to: 'users#follow', as: :follow
+      get '/unfollow', to: 'users#unfollow', as: :unfollow
+      end
+    end
     end
   end
 end
