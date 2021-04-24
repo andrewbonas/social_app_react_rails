@@ -1,0 +1,1 @@
+json.partial! "api/v1/posts/post/comments/comment", comment: @comment

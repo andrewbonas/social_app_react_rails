@@ -1,7 +1,23 @@
 import React, { useState } from "react";
 import axios from "axios";
+import CommentForm from "./CommentForm";
+
 
 const Posts = (props) => {
+  const [comments, setComments] = useState([]);
+
+  const updateComment = (comment) => {
+    if(typeof comment === 'number' && (comment%1)===0){
+      console.log(comments);
+      const allPosts = comments.filter(c => c.id !== comment);
+      setComments(allComments);
+    } else {
+    const allComments = [comment, ...comments];
+    setComments(allComments);
+  }
+  }
+
+
   const deletePost = () => {
     axios
       .delete(`/api/v1/posts/${props.post.id}`)
@@ -23,6 +39,7 @@ const Posts = (props) => {
             Delete
           </button>
         </div>
+        <CommentForm updateComment={updateComment} />
       </div>
     </div>
   );
