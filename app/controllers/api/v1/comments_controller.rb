@@ -9,7 +9,7 @@ class Api::V1::CommentsController < ApplicationController
   def show
     @post = Post.find(params[:post_id])
     @comments = @post.comments
-  end 
+  end
 
   def create
     @post = Post.find(params[:post_id])
@@ -17,17 +17,17 @@ class Api::V1::CommentsController < ApplicationController
     @comment.user_id = current_user.id
     respond_to do |format|
       if @post.save
-        format.json {render :show, status: :created, location: api_v1_post_comments_path(@post)}
+        format.json { render :show, status: :created, location: api_v1_post_comments_path(@post) }
       else
-        format.json {render json: @post.errors, status: :unprocessable_entity}
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
-  
+
   def destroy
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
     if authorized?
-      @post = Post.find(params[:post_id])
-      @comment = @post.comments.find(params[:id])
       @comment.destroy
       respond_to do |format|
         format.json { head :no_content }
@@ -36,10 +36,9 @@ class Api::V1::CommentsController < ApplicationController
       handle_unauthorized
     end
   end
-  
 
   private
-    
+
   def authorized?
     @post.user == current_user
   end

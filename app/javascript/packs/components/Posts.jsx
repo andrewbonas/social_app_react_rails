@@ -8,8 +8,14 @@ const Posts = (props) => {
   const postId = props.post.id;
 
   const updateComment = (comment) => {
-    const allComments = [comment, ...comments];
-    setComments(allComments);
+   
+     if(typeof comment === 'number' && (comment%1)===0){
+      const allComments = comments.filter(c => c.id !== comment);
+      setComments(allComments);
+    } else {
+      const allComments = [comment, ...comments];
+      setComments(allComments);
+    };
   };
 
   const deletePost = () => {
@@ -51,6 +57,7 @@ const Posts = (props) => {
                 key={comment.id}
                 comments={comment}
                 updateComment={updateComment}
+                postId={postId}
               />
             )
           )}
