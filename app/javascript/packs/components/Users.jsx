@@ -11,10 +11,10 @@ const Users = () => {
 
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     getAllUsers();
     getCurrentUser();
-      setLoading(false)
+      setLoading(false);
   }, []);
 
   const getAllUsers = () => {

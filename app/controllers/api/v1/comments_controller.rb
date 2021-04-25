@@ -2,14 +2,13 @@ class Api::V1::CommentsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
+  def index
+    @comments = Comment.all
+  end
+
   def show
-    if authorized?
-      respond_to do |format|
-        format.json { render :show }
-      end
-    else
-      handle_unauthorized
-    end 
+    @post = Post.find(params[:post_id])
+    @comments = @post.comments
   end 
 
   def create
@@ -40,9 +39,9 @@ class Api::V1::CommentsController < ApplicationController
   
 
   private
-
+    
   def authorized?
-    @post.user == current_user 
+    @post.user == current_user
   end
 
   def handle_unauthorized

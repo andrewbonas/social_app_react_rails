@@ -5,16 +5,15 @@ const CommentForm = (props) => {
   const [commentData, setCommentData] = useState("");
 
   const createComment = () => {
-    console.log(commentData);
     axios
-      .post("/api/v1/posts/1/comments", {
+      .post(`/api/v1/posts/${props.postId}/comments`, {
         comment: {
           body: commentData,
         },
       })
       .then((res) => {
         const comment = res.data;
-        console.log(comment);
+        props.updateComment(comment);
       })
       .catch((error) => {
         console.log(error);
@@ -44,7 +43,9 @@ const CommentForm = (props) => {
             id="comment-text"
             rows="2"
           ></textarea>
-          <button type="submit">Submit</button>
+          <button className="btn btn-sm btn-primary" type="submit">
+            Submit
+          </button>
         </div>
       </form>
     </div>

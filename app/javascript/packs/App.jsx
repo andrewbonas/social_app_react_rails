@@ -11,7 +11,6 @@ const App = () => {
 
   const updatePost = (post) => {
     if(typeof post === 'number' && (post%1)===0){
-      console.log(posts);
       const allPosts = posts.filter(p => p.id !== post);
       setPosts(allPosts);
     } else {
