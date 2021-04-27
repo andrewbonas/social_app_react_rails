@@ -27,7 +27,7 @@ const Users = () => {
   };
 
   const getCurrentUser = () => {
-    axios.get(`/api/v1/users/show`)
+    axios.get(`/api/v1/users/1`)
     .then((response) => currentUser.current = (response.data))
   };
 

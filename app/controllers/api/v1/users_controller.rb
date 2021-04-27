@@ -4,10 +4,13 @@ class Api::V1::UsersController < ApplicationController
   
   def index
     @users = User.all
+    
   end
   
   def show
-    @user = current_user
+    user = User.find(params[:id])
+    avatar = rails_blob_path(user.avatar)
+    render json: {user: user, current_user: current_user, avatar: avatar}
   end
 
   def follow
@@ -22,13 +25,4 @@ class Api::V1::UsersController < ApplicationController
     current_user.stop_following(@user)
     respond_to :json
   end
-
-  def create
-  end
-  def update
-  end
-  def destroy
-  end
-  private
-   
 end

@@ -5,9 +5,9 @@ const User = (props) => {
   // re-organize components folder
   const [currentUser, setCurrentUser] = useState(false);
   const [following, setFollowing] = useState(false);
+  const [userAvatar, setUserAvatar] = useState('');
 
   const follow = (id) => {
-    console.log(props.user.id, "11");
     axios
       .get(`/api/v1/users/${id}/follow`)
       .then((res) => {
@@ -28,14 +28,20 @@ const User = (props) => {
       });
   };
 
+  const getUserAvatar = () => {
+    axios.get(`/api/v1/users/${props.user.id}`)
+    .then((response) => setUserAvatar(response.data.avatar))
+  };
+
+
   useEffect(() => {
+    getUserAvatar();
     updateFollow();
   }, []);
 
   const updateFollow = () => {
     const user = props.user;
-    const currentUser = props.currentUser;
-
+    const currentUser = props.currentUser.current_user;
     if (user.id === currentUser.id) {
       setCurrentUser(true);
     }
@@ -53,6 +59,7 @@ const User = (props) => {
     <div className="post-ctn">
       <div className="post border  p-2 mt-3">
         <div className="font-weight-bold">{props.user.username}</div>
+        <img className="rounded  img-thumbnail" src={`http://localhost:3000/${userAvatar}`} />
         {!currentUser && (
           <div>
             {!following && (
