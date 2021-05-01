@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {Link } from 'react-router-dom'
+
 
 const User = (props) => {
   // re-organize components folder
@@ -60,6 +62,7 @@ const User = (props) => {
       <div className="post border  p-2 mt-3">
         <div className="font-weight-bold">{props.user.username}</div>
         <img className="rounded  img-thumbnail" src={`http://localhost:3000/${userAvatar}`} />
+        <Link to={`/user/${props.user.id}`}>View Profile</Link>
         {!currentUser && (
           <div>
             {!following && (

@@ -4,7 +4,7 @@ class Api::V1::PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   
   def index
-    @posts = current_user.posts.all
+    @posts = Post.all
   end
 
   def show

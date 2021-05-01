@@ -31,10 +31,6 @@ const Users = () => {
     .then((response) => currentUser.current = (response.data))
   };
 
-
-  console.log(users);
-  console.log(currentUser.current);
-
   return (
     <div>
       {!loading && ( 

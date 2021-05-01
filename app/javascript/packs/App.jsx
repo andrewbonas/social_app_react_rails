@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Posts from "./components/Posts";
 import PostForm from "./components/PostForm";
 import Spinner from "./components/Spinner";
+import axios from "axios";
 
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState([]);
 
 
   const updatePost = (post) => {
@@ -18,16 +20,27 @@ const App = () => {
     setPosts(allPosts);
   }
   }
+  
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
+    getPosts();
+    getCurrentUser();
+    setLoading(false);
+  }, []);
+
+  const getPosts = () => {
     fetch(`/api/v1/posts`)
       .then((response) => {
         return response.json();
       })
       .then((data) => setPosts(data))
       .catch((error) => console.log(error.message))
-      setLoading(false)
-  }, []);
+  }
+
+  const getCurrentUser = () => {
+    axios.get(`/api/v1/users/1`)
+    .then((response) => setCurrentUser(response.data))
+  };
 
   return (
     <div>
@@ -36,7 +49,9 @@ const App = () => {
       <PostForm updatePost={updatePost}/>
       <div>
         {posts.map((post) => (
+          currentUser.current_user.id === post.user_id ?
           <Posts key={post.id} post={post} updatePost={updatePost} />
+          : null
         ))}
       </div>
       </div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   authenticated :user do 
     root "pages#posts", as: :authenticated_root
     get '/users', to: 'pages#users'
+    get '/user/:id', to: 'pages#users'
   end
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
