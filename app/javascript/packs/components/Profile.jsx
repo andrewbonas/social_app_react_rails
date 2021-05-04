@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Posts from "./Posts";
 
@@ -10,11 +10,24 @@ const Profile = (props) => {
  const [posts, setPosts] = useState()
 
 
+ const updatePost = (post) => {
+  if(typeof post === 'number' && (post%1)===0){
+    const allPosts = posts.filter(p => p.id !== post);
+    setPosts(allPosts);
+  } else {
+  const allPosts = [post, ...posts];
+  setPosts(allPosts);
+}
+}
+
+
+
+
   useEffect(() => {
     setLoading(true);
     getUser();
     getPosts();
-      setLoading(false);
+    setLoading(false);
   }, []);
 
 const getUser = () => {
@@ -33,10 +46,9 @@ const getPosts = () => {
 
   return (
     <div className="post-ctn">
-
       {posts !== undefined ? posts.map((post) => (
          userId === post.user_id ?
-          <Posts key={post.id} post={post} />
+          <Posts key={post.id} post={post} updatePost={updatePost}/>
           : null
         )) : null}
     </div>

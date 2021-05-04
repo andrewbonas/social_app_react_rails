@@ -1,14 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
 const Posts = (props) => {
   const [comments, setComments] = useState([]);
+ const [currentUser, setCurrentUser] = useState();
   const postId = props.post.id;
+  
 
   const updateComment = (comment) => {
-   
      if(typeof comment === 'number' && (comment%1)===0){
       const allComments = comments.filter(c => c.id !== comment);
       setComments(allComments);
@@ -30,24 +31,37 @@ const Posts = (props) => {
   };
 
   useEffect(() => {
+   getComments();
+   getCurrentUser();
+  }, []);
+
+  const getCurrentUser = () => {
+    axios.get(`/api/v1/users/1`)
+    .then((response) => setCurrentUser(response.data))
+  };
+
+  const getComments = () => {
     fetch(`/api/v1/posts/${postId}/comments`)
       .then((response) => {
         return response.json();
       })
       .then((data) => setComments(data))
-
       .catch((error) => console.log(error.message));
-  }, []);
-
+  };
+if(currentUser){
+  console.log(currentUser.current_user);
+}
   return (
     <div className="post-ctn">
       <div className="post border  p-2 mt-3">
         <div className="font-weight-bold">{props.post.user.username}</div>
         <div className="d-flex flex-row justify-content-between">
           <div>{props.post.body}</div>
+          {currentUser !== undefined && currentUser.current_user.id === props.post.user_id ? 
           <button onClick={deletePost} className="btn btn-sm btn-danger">
             Delete
           </button>
+: null }
         </div>
         <CommentForm updateComment={updateComment} postId={postId} />
         <div>
