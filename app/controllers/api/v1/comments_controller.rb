@@ -40,7 +40,7 @@ class Api::V1::CommentsController < ApplicationController
   private
 
   def authorized?
-    @post.user == current_user
+    @post.user == current_user || @comment.user == current_user
   end
 
   def handle_unauthorized

@@ -19,6 +19,7 @@ const User = (props) => {
         console.log(error);
       });
   };
+  
   const unFollow = (id) => {
     axios
       .get(`/api/v1/users/${id}/unfollow`)
