@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {Link } from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 const User = (props) => {
   // re-organize components folder
   const [currentUser, setCurrentUser] = useState(false);
   const [following, setFollowing] = useState(false);
-  const [userAvatar, setUserAvatar] = useState('');
+  const [userAvatar, setUserAvatar] = useState("");
 
   const follow = (id) => {
     axios
@@ -19,7 +18,7 @@ const User = (props) => {
         console.log(error);
       });
   };
-  
+
   const unFollow = (id) => {
     axios
       .get(`/api/v1/users/${id}/unfollow`)
@@ -32,10 +31,10 @@ const User = (props) => {
   };
 
   const getUserAvatar = () => {
-    axios.get(`/api/v1/users/${props.user.id}`)
-    .then((response) => setUserAvatar(response.data.avatar))
+    axios
+      .get(`/api/v1/users/${props.user.id}`)
+      .then((response) => setUserAvatar(response.data.avatar));
   };
-
 
   useEffect(() => {
     getUserAvatar();
@@ -62,7 +61,10 @@ const User = (props) => {
     <div className="post-ctn">
       <div className="post border  p-2 mt-3">
         <div className="font-weight-bold">{props.user.username}</div>
-        <img className="rounded  img-thumbnail" src={`http://localhost:3000/${userAvatar}`} />
+        <img
+          className="rounded  img-thumbnail"
+          src={`http://localhost:3000/${userAvatar}`}
+        />
         <Link to={`/user/${props.user.id}`}>View Profile</Link>
         {!currentUser && (
           <div>

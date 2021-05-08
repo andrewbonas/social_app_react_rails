@@ -5,7 +5,6 @@ const PostForm = (props) => {
   const [postData, setPostData] = useState("");
 
   const createPost = () => {
-    console.log(postData);
     axios
       .post("/api/v1/posts", {
         post: {
