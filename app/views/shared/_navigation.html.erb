@@ -1,30 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
-  <div class="container">
-  <% link_to "Rails React Pilot Social", root_path, class:"navbar-brand" %>
-  <div class="btn-ctn container justify-content-end">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  </div>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item text-right pr-3">
-        <% if user_signed_in? %>
-        <% if current_user.avatar.attached? %>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-custom shadow-sm rounded">
+      <div class="container">
+        <%= link_to "Pilot Social", root_path, class: "navbar-brand" %>
+          <ul class="navbar-nav mr-right">
+            <li class="nav mr-auto">
+              <% if current_user %>
+                <%= link_to users_path, class: "nav-link px-2" do %>
+                  <i class="fas fa-user-friends" style="color:white;"></i>
+                <% end %>
+                <% if current_user.avatar.attached? %>
                   <%= image_tag current_user.avatar.variant(resize: "40x40!"), class: "rounded-circle" %>
                 <% else %>
                   <%=  image_tag asset_path('default_profile.jpg'), :size => "40x40", class: 'rounded-circle' %>
                 <% end %> 
-          <%= current_user.username %>
-          <%= link_to 'Users', '/users'%>
-          <%= link_to 'Home', '/'%>
-          <%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %>
-          <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "nav-link") %>
-        <% else %>
-          <%= link_to('Login', new_user_session_path, class: "nav-link") %>
-        <% end %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+                <div class="dropdown ml-auto">
+                  <button class="btn  text-light px-2 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= current_user.username %>
+                  </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a><%= link_to 'Users', '/users', class: "dropdown-item" %></a>
+                      <a><%= link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item" %></a>
+                      <a><%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></a>
+                    </div>
+                 <% else %>
+                  <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link px-2" %>
+                  <%= link_to 'Sign In', new_user_session_path, class: "nav-link px-2" %>
+                <% end %>
+            </li>
+          </ul>
+      </div>
+    </nav>

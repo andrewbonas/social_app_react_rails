@@ -53,7 +53,7 @@ const Posts = (props) => {
     <div className="post-ctn">
       <div className="post border  p-2 mt-3">
         <div className="font-weight-bold">{props.post.user.username}</div>
-        <div className="d-flex flex-row justify-content-between">
+        <div className=" test d-flex flex-row justify-content-between">
           <div>{props.post.body}</div>
           {currentUser !== undefined &&
           currentUser.current_user.id === props.post.user_id ? (
