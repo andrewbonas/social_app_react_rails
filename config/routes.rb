@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'pages#posts'
+
+  unauthenticated :user do
+    devise_scope :user do
+      root :to => "devise/sessions#new"
+    end
+  end
+
   authenticated :user do 
-    root "pages#posts", as: :authenticated_root
+    root 'pages#posts', as: :authenticated_root
     get '/users', to: 'pages#users'
     get '/user/:id', to: 'pages#users'
   end

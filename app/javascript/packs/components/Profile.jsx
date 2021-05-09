@@ -48,15 +48,19 @@ const Profile = (props) => {
       .then((data) => setPosts(data))
       .catch((error) => console.log(error.message));
   };
-
   return (
     <div className="post-ctn">
       {!loading && (
         <div>
-          <img
-            className="rounded  img-thumbnail"
-            src={`http://localhost:3000/${userAvatar}`}
-          />
+          <div className="d-flex align-items-center h4">
+            <img
+              className="rounded-circle ml-2 border-white img-thumbnail photo"
+              src={`http://localhost:3000/${userAvatar}`}
+            />
+            {user !== undefined ? (
+              <div>{user.current_user.username}</div>
+            ) : null}
+          </div>
           {posts !== undefined
             ? posts.map((post) =>
                 userId === post.user_id ? (

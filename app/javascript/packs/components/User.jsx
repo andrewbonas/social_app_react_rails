@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const User = (props) => {
-  // re-organize components folder
   const [currentUser, setCurrentUser] = useState(false);
   const [following, setFollowing] = useState(false);
   const [userAvatar, setUserAvatar] = useState("");
@@ -59,35 +58,37 @@ const User = (props) => {
 
   return (
     <div className="post-ctn">
-      <div className="post border  p-2 mt-3">
-        <div className="font-weight-bold">{props.user.username}</div>
-        <img
-          className="rounded  img-thumbnail"
-          src={`http://localhost:3000/${userAvatar}`}
-        />
-        <Link to={`/user/${props.user.id}`}>View Profile</Link>
-        {!currentUser && (
-          <div>
-            {!following && (
+      <div className="post border p-2 mt-3">
+        <div className="h4">{props.user.username}</div>
+        <div className="d-flex align-items-center justify-content-between">
+          <img
+            className="rounded-circle  border-white img-thumbnail photo"
+            src={`http://localhost:3000/${userAvatar}`}
+          />
+          <div className="d-flex flex-column align-items-end">
+            <Link to={`/user/${props.user.id}`}>View Profile</Link>
+            {!currentUser && (
               <div>
-                <a href="#" onClick={() => follow(props.user.id)}>
-                  Follow
-                </a>
-                <br />
+                {!following && (
+                  <div>
+                    <a href="#" onClick={() => follow(props.user.id)}>
+                      Follow
+                    </a>
+                    <br />
+                  </div>
+                )}
+                {following && (
+                  <div>
+                    <a href="#" onClick={() => unFollow(props.user.id)}>
+                      unFollow
+                    </a>
+                  </div>
+                )}
               </div>
             )}
-            {following && (
-              <div>
-                <a href="#" onClick={() => unFollow(props.user.id)}>
-                  unFollow
-                </a>
-              </div>
-            )}
+            <div>Followers: {props.user.followers_count}</div>
+            <div>Following: {props.user.follow_count}</div>
           </div>
-        )}
-        <div className="d-flex flex-row justify-content-between">
-          <div>Followers: {props.user.followers_count}</div>
-          <div>Following: {props.user.follow_count}</div>
         </div>
       </div>
     </div>

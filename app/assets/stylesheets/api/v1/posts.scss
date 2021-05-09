@@ -1,6 +1,16 @@
 // Place all the styles related to the api/v1/posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.test {
-  color: green;
+
+.card-custom {
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+  padding: 2px 16px;
+  border: .2px solid rgb(233, 230, 230);
+  transition: 0.3s;
+  border-radius: 5px;
 }
+
+.card-custom:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+

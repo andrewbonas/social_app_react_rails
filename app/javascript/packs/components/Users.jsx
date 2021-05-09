@@ -32,6 +32,7 @@ const Users = () => {
 
   return (
     <div>
+      <div className=" mt-2 display-4">Users</div>
       {!loading && (
         <div>
           <div>

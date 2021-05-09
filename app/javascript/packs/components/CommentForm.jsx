@@ -34,18 +34,25 @@ const CommentForm = (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <div className="post-form-ctn form-group">
-          <label htmlFor="post">Comment:</label>
+          <label className="font-weight-bold" htmlFor="post">
+            Comment:
+          </label>
           <textarea
             type="text"
-            className="form-control"
+            className="form-control comment-shadow"
             value={commentData}
             onChange={handleChange}
             id="comment-text"
             rows="2"
           ></textarea>
-          <button className="btn btn-sm btn-primary" type="submit">
-            Submit
-          </button>
+          <div className="d-flex justify-content-end">
+            <button
+              className="btn btn-sm btn-primary m-1 d-flex justify-content-end"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </form>
     </div>

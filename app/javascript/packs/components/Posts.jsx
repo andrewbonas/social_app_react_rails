@@ -50,14 +50,14 @@ const Posts = (props) => {
   };
 
   return (
-    <div className="post-ctn">
-      <div className="post border  p-2 mt-3">
+    <div className="post-ctn card-custom m-3">
+      <div className="post p-2 mt-3">
         <div className="font-weight-bold">{props.post.user.username}</div>
-        <div className=" test d-flex flex-row justify-content-between">
+        <div className="d-flex flex-row justify-content-between">
           <div>{props.post.body}</div>
           {currentUser !== undefined &&
           currentUser.current_user.id === props.post.user_id ? (
-            <button onClick={deletePost} className="btn btn-sm btn-danger">
+            <button onClick={deletePost} className="btn btn-sm btn-danger mr-2">
               Delete
             </button>
           ) : null}

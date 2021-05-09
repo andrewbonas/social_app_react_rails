@@ -33,8 +33,8 @@ const PostForm = (props) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="post-form-ctn form-group">
-          <label htmlFor="post">Create Post</label>
+        <div className="post-form-ctn form-group card-custom m-3">
+          <label htmlFor="post">Create Post:</label>
           <textarea
             type="text"
             className="form-control"
@@ -43,7 +43,14 @@ const PostForm = (props) => {
             id="post-text"
             rows="3"
           ></textarea>
-          <button type="submit">Submit</button>
+          <div className="d-flex justify-content-end">
+            <button
+              className="btn btn-sm btn-primary m-1 mr-3 d-flex justify-content-end"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </form>
     </div>
