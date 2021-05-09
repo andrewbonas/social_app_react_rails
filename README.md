@@ -1,24 +1,6 @@
-# README
+# Pilot Social
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project was created as a final assignment in Ruby on Rails from The Odin Project.
 
-Things you may want to cover:
+To find out more visit [The Odin Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/javascript/lessons/final-project-116ff273-1e55-4055-bd7f-146c17d0ec9c).
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
