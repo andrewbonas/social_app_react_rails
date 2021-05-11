@@ -42,7 +42,7 @@ const User = (props) => {
 
   const updateFollow = () => {
     const user = props.user;
-    const currentUser = props.currentUser.current_user;
+    const currentUser = props.currentUser;
     if (user.id === currentUser.id) {
       setCurrentUser(true);
     }
@@ -63,7 +63,7 @@ const User = (props) => {
         <div className="d-flex align-items-center justify-content-between">
           <img
             className="rounded-circle  border-white img-thumbnail photo"
-            src={`http://localhost:3000/${userAvatar}`}
+            src={`https://sheltered-lake-01053.herokuapp.com/${userAvatar}`}
           />
           <div className="d-flex flex-column align-items-end">
             <Link to={`/user/${props.user.id}`}>View Profile</Link>

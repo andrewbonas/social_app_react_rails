@@ -27,9 +27,9 @@ const Users = () => {
   const getCurrentUser = () => {
     axios
       .get(`/api/v1/users/2`)
-      .then((response) => (currentUser.current = response.data));
+      .then((response) => (currentUser.current = response.data.current_user));
   };
-
+console.log(currentUser.current);
   return (
     <div>
       <div className=" mt-2 display-4">Users</div>

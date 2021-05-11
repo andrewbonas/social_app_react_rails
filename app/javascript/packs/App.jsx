@@ -37,10 +37,10 @@ const App = () => {
 
   const getCurrentUser = () => {
     axios
-      .get(`/api/v1/users/1`)
-      .then((response) => setCurrentUser(response.data));
+      .get(`/api/v1/users/2`)
+      .then((response) => setCurrentUser(response.data.current_user));
   };
-
+  
   return (
     <div>
       {!loading && (
@@ -48,7 +48,7 @@ const App = () => {
           <PostForm updatePost={updatePost} />
           <div>
             {posts.map((post) =>
-              currentUser.current_user.id !== undefined && currentUser.current_user.id === post.user_id ? (
+              currentUser.id !== undefined && currentUser.id === post.user_id ? (
                 <Posts key={post.id} post={post} updatePost={updatePost} />
               ) : null
             )}
