@@ -48,7 +48,7 @@ const App = () => {
           <PostForm updatePost={updatePost} />
           <div>
             {posts.map((post) =>
-              currentUser.current_user.id === post.user_id ? (
+              currentUser.current_user.id !== undefined && currentUser.current_user.id === post.user_id ? (
                 <Posts key={post.id} post={post} updatePost={updatePost} />
               ) : null
             )}
