@@ -15,6 +15,4 @@ ActiveStorage.start();
 require("./Index");
 require("bootstrap");
 
-import 'bootstrap'
-import './src/application.scss'
-
+import "bootstrap/dist/css/bootstrap";
