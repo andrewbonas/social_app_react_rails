@@ -55,7 +55,7 @@ const Profile = (props) => {
           <div className="d-flex align-items-center h4">
             <img
               className="rounded-circle ml-2 border-white img-thumbnail photo"
-              src={`http://localhost:3000/${userAvatar}`}
+              src={`https://sheltered-lake-01053.herokuapp.com/${userAvatar}`}
             />
             {user !== undefined ? (
               <div>{user.current_user.username}</div>
