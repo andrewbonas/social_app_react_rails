@@ -36,7 +36,7 @@ const Posts = (props) => {
 
   const getCurrentUser = () => {
     axios
-      .get(`/api/v1/users/1`)
+      .get(`/api/v1/users/2`)
       .then((response) => setCurrentUser(response.data));
   };
 
