@@ -8,7 +8,11 @@ class Api::V1::UsersController < ApplicationController
   
   def show
     user = User.find(params[:id])
-    avatar = rails_blob_path(user.avatar)
+    if user.avatar.present?
+      avatar = rails_blob_path(user.avatar)
+    else
+      avatar = ActionController::Base.helpers.asset_path('default_profile.jpg')
+    end
     render json: {user: user, current_user: current_user, avatar: avatar}
   end
 

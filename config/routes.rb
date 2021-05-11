@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-
+get 'app/assets/images/default_profile.jpg', to: 'users#default', as: :default
   unauthenticated :user do
     devise_scope :user do
       root :to => "devise/sessions#new"
